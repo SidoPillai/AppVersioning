@@ -1,0 +1,12 @@
+{
+  "name": "appversioning",
+  "version": "1.0.1",
+  "private": true,
+  "scripts": {
+    "changeset": "changeset",
+    "version": "changeset version"
+  },
+  "dependencies": {
+    "@changesets/cli": "2.27.12"
+  }
+}
