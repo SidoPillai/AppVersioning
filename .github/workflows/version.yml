@@ -1,1 +1,63 @@
-﻿
+﻿name: Version
+
+on:
+  workflow_dispatch:
+
+permissions:
+  actions: write
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+        ref: develop
+        token: ${{ secrets.PAT }}
+
+    - name: Setup Node
+      uses: actions/setup-node@v4
+      with:
+        node-version: 21.x
+
+    - name: Install NPM Packages
+      run: npm ci
+      working-directory: .
+
+    - name: Bump Version
+      run: npm run version
+      working-directory: .
+
+    - name: Sync Changesets Version
+      shell: pwsh
+      run: |
+        $package = Get-Content -Raw ./package.json | ConvertFrom-Json
+        $version = $package.version
+
+        $xml = [Xml] (Get-Content ./AppVersioning.csproj)
+        $xml.Project.PropertyGroup.ApplicationDisplayVersion = $version
+        $xml.Save("./AppVersioning.csproj")
+
+    - name: Commit Version Bump
+      run: |
+        git config user.name "GitHub Actions Bot"
+        git config user.email "<>"
+        git add ./AppVersioning.csproj
+        git add ./AppVersioning/CHANGELOG.md
+        git add ./AppVersioning/.changeset
+        git add ./AppVersioning/package.json
+        git commit -m "Bump version"
+
+    - name: Push Version Bump
+      run: git push origin develop
+
+    - name: Develop -> Master
+      run: |
+        git fetch origin master
+        git checkout -b master origin/master
+        git merge develop
+        git push origin master
