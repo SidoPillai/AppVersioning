@@ -60,10 +60,7 @@ jobs:
       run: |
         git config user.name "GitHub Actions Bot"
         git config user.email "<>"
-        git add ./AppVersioning.csproj
-        git add ./AppVersioning/CHANGELOG.md
-        git add ./AppVersioning/.changeset
-        git add ./AppVersioning/package.json
+        git add ./AppVersioning.csproj        
         git commit -m "Bump version"
 
     - name: Push Version Bump
