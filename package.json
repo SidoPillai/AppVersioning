@@ -5,7 +5,7 @@
   "scripts": {
     "changeset": "changeset",
     "version": "changeset version",
-    "update-version": "npm run version && git add . && git commit -m 'Version Packages' && git push"
+    "update-version": "npm run version"
   },
   "dependencies": {
     "@changesets/cli": "2.27.12"
