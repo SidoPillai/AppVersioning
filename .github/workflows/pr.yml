@@ -34,7 +34,7 @@ jobs:
       working-directory: .
 
     - name: Code Analysis
-      run: dotnet format --check AppVersioning.sln
+      run: dotnet format --verify-no-changes ./AppVersioning.sln
       working-directory: .
 
     - name: Lint Code
