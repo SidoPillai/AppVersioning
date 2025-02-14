@@ -19,7 +19,7 @@ jobs:
         ref: develop
         token: ${{ secrets.PAT }}
 
-    - name: Setup Node
+    - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
         node-version: 21.x
@@ -31,6 +31,18 @@ jobs:
     - name: Bump Version
       run: npm run update-version
       working-directory: .
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Commit Changelog Files
+      run: |
+        git config user.name "GitHub Actions Bot"
+        git config user.email "<>"
+        git add ./AppVersioning/CHANGELOG.md
+        git add ./AppVersioning/.changeset
+        git add ./AppVersioning/package.json
+        git commit -m "Update changelog"
+        git push
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
