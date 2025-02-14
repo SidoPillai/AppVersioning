@@ -1,4 +1,4 @@
-﻿name: Version
+﻿name: Auto Version
 
 on:
   workflow_dispatch:
@@ -29,8 +29,10 @@ jobs:
       working-directory: .
 
     - name: Bump Version
-      run: npm run version
+      run: npm run update-version
       working-directory: .
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Sync Changesets Version
       shell: pwsh
