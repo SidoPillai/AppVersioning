@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "changeset": "changeset",
-    "version": "changeset version"
+    "version": "changeset version",
+    "update-version": "npm run version && git add . && git commit -m 'Version Packages' && git push"
   },
   "dependencies": {
     "@changesets/cli": "2.27.12"
