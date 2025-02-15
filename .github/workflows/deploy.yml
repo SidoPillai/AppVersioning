@@ -28,12 +28,20 @@ jobs:
       run: dotnet restore
       working-directory: .
 
-    - name: Build
+    - name: Build Windows
       run: dotnet build -c Release -f:net9.0-windows10.0.19041.0
       working-directory: .
 
-    - name: Publish
+    - name: Publish Windows
       run: dotnet publish -c Release -f:net9.0-windows10.0.19041.0 /p:GenerateAppxPackageOnBuild=true
+      working-directory: .
+
+    - name: Build Android
+      run: dotnet build -c Release -f:net9.0-android
+      working-directory: .
+
+    - name: Publish Android
+      run: dotnet publish -c Release -f:net9.0-android
       working-directory: .
 
     - name: Extract Version
@@ -63,7 +71,7 @@ jobs:
         files: | 
           ./AppVersioning.appinstaller
           ./bin/Release/net9.0-windows10.0.19041.0/win10-x64/AppPackages/AppVersioning_${{ steps.extractVersion.outputs.version }}.0_Test/AppVersioning.msix
-        
+          ./bin/Release/net9.0-android/*.apk
     
     # - name: Upload Artifact
     #   uses: actions/upload-artifact@v4
