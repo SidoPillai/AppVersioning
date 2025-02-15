@@ -38,9 +38,10 @@ jobs:
       run: |
         git config user.name "GitHub Actions Bot"
         git config user.email "<>"
-        git add ./AppVersioning/CHANGELOG.md
-        git add ./AppVersioning/.changeset
-        git add ./AppVersioning/package.json
+        git add -A
+        # git add ./AppVersioning/CHANGELOG.md
+        # git add ./AppVersioning/.changeset
+        # git add ./AppVersioning/package.json
         git commit -m "Update changelog"
         git push origin develop
       env:
@@ -56,15 +57,13 @@ jobs:
         $xml.Project.PropertyGroup.ApplicationDisplayVersion = $version
         $xml.Save("./AppVersioning.csproj")
 
-    - name: Commit Version Bump
+    - name: Commit & Push Version Bump
       run: |
         git config user.name "GitHub Actions Bot"
         git config user.email "<>"
         git add ./AppVersioning.csproj        
         git commit -m "Bump version"
-
-    - name: Push Version Bump
-      run: git push origin develop
+        git push origin develop
 
     - name: Develop -> Master
       run: |
