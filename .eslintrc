@@ -1,9 +1,0 @@
-﻿{
-  "extends": [ "plugin:csharp/recommended" ],
-  "plugins": [ "csharp" ],
-  "rules": {
-    "csharp/prefer-readonly-fields": "error",
-    "csharp/no-unused-parameters": "error",
-    "csharp/naming-conventions": "warn"
-  }
-}

@@ -6,12 +6,15 @@
     "changeset": "changeset",
     "version": "changeset version",
     "update-version": "npm run version",
-    "lint": "eslint ."
+    "lint": "lint-staged"
   },
   "dependencies": {
     "@changesets/cli": "2.27.12"
   },
   "devDependencies": {
-    "eslint": "^9.20.1"
+    "lint-staged": "^15.4.3"
+  },
+  "lint-staged": {
+    "*.cs": "dotnet format --include"
   }
 }
