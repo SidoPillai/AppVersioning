@@ -66,4 +66,9 @@ To automatically update your version and changelog using changesets, you can set
 
 This workflow file will run the `npx changeset version` command on every push to the `main` branch, which will apply any changesets that have been created.
 
+## Git Actions Workflow
 
+1. PR 
+2. Build
+3. Version
+4. Deploy
