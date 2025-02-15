@@ -5,9 +5,16 @@
   "scripts": {
     "changeset": "changeset",
     "version": "changeset version",
-    "update-version": "npm run version"
+    "update-version": "npm run version",
+    "lint": "npx lint-staged"
   },
   "dependencies": {
     "@changesets/cli": "2.27.12"
+  },
+  "devDependencies": {
+    "lint-staged": "^15.4.3"
+  },
+  "lint-staged": {
+    "*.cs": "dotnet format --include"
   }
 }
