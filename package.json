@@ -5,7 +5,8 @@
   "scripts": {
     "changeset": "changeset",
     "version": "changeset version",
-    "update-version": "npm run version"
+    "update-version": "npm run version",
+    "lint": "eslint ."
   },
   "dependencies": {
     "@changesets/cli": "2.27.12"
