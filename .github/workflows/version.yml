@@ -30,8 +30,11 @@ jobs:
 
     - name: Create Changeset
       run: | 
-        echo "patch" | npx changeset add --empty
-        echo "Bump version patch" > .changeset/empty.md
+        npx changeset add --empty
+        echo "---" > .changeset/empty.md
+        echo "type: patch" >> .changeset/empty.md
+        echo "summary: Bump version patch" >> .changeset/empty.md
+        echo "---" >> .changeset/empty.md
       working-directory: .
 
     - name: Bump Version
