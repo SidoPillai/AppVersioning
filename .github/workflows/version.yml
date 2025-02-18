@@ -32,7 +32,8 @@ jobs:
       run: | 
         npx changeset add --empty
         echo --- > .changeset/empty.md
-        echo "appversioning": patch >> .changeset/empty.md
+        echo '"appversioning": patch' >> .changeset/empty.md
+        # echo "\"appversioning\": patch" >> .changeset/empty.md
         echo --- >> .changeset/empty.md
         echo "`n" >> .changeset/empty.md
         # echo ""  >> .changeset/empty.md
