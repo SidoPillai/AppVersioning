@@ -1,5 +1,17 @@
 # appversioning
 
+## 1.2.1
+
+### Patch Changes
+
+- Removed build.yml
+
+## 1.2.0
+
+### Minor Changes
+
+- 78ee5d0: Added PAT
+
 ## 1.1.0
 
 ### Minor Changes
