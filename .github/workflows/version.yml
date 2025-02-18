@@ -32,11 +32,10 @@ jobs:
       run: | 
         npx changeset add --empty
         echo "---" > .changeset/empty.md
-        echo "type: patch" >> .changeset/empty.md
-        echo "summary: Bump version patch" >> .changeset/empty.md
-        echo "packages:" >> .changeset/empty.md
-        echo "  - appversioning" >> .changeset/empty.md
+        echo "\"appversioning\": patch" >> .changeset/empty.md
         echo "---" >> .changeset/empty.md
+        echo "" >> .changeset/empty.md
+        echo Updating patch >> .changeset/empty.md
       working-directory: .
 
     - name: Bump Version
@@ -49,9 +48,10 @@ jobs:
       run: |
         git config user.name "GitHub Actions Bot"
         git config user.email "<>"
-        git add ./AppVersioning/CHANGELOG.md
-        git add ./AppVersioning/.changeset
-        git add ./AppVersioning/package.json
+        git add -A
+        # git add ./AppVersioning/CHANGELOG.md
+        # git add ./AppVersioning/.changeset
+        # git add ./AppVersioning/package.json
         git diff --quiet || git commit -m "Update changelog"
         git push origin develop
       env:
