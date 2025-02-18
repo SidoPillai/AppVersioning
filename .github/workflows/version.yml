@@ -34,6 +34,8 @@ jobs:
         echo "---" > .changeset/empty.md
         echo "type: patch" >> .changeset/empty.md
         echo "summary: Bump version patch" >> .changeset/empty.md
+        echo "packages:" >> .changeset/empty.md
+        echo "  - appversioning" >> .changeset/empty.md
         echo "---" >> .changeset/empty.md
       working-directory: .
 
@@ -50,7 +52,7 @@ jobs:
         git add ./AppVersioning/CHANGELOG.md
         git add ./AppVersioning/.changeset
         git add ./AppVersioning/package.json
-        git commit -m "Update changelog"
+        git diff --quiet || git commit -m "Update changelog"
         git push origin develop
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -77,5 +79,4 @@ jobs:
       run: |
         git fetch origin master
         git checkout -b master origin/master
-        git merge develop
-        git push origin master
+        git merge develop && git push origin master
