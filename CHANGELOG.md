@@ -1,5 +1,12 @@
 # appversioning
 
+## 1.2.3
+
+### Patch Changes
+
+- Updating
+  patch
+
 ## 1.2.2
 
 ### Patch Changes
