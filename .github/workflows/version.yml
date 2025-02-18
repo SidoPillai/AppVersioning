@@ -28,6 +28,12 @@ jobs:
       run: npm ci
       working-directory: .
 
+    - name: Create Changeset
+      run: | 
+        echo "patch" | npx changeset add --empty
+        echo "Bump version patch" > .changeset/empty.md
+      working-directory: .
+
     - name: Bump Version
       run: npm run update-version
       working-directory: .
