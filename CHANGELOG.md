@@ -1,5 +1,24 @@
 # appversioning
 
+## 1.2.3
+
+### Patch Changes
+
+- Updating
+  patch
+
+## 1.2.2
+
+### Patch Changes
+
+- Bump patch
+
+## 1.2.1
+
+### Patch Changes
+
+- Removed build.yml
+
 ## 1.2.0
 
 ### Minor Changes

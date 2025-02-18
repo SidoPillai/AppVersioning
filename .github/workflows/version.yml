@@ -28,6 +28,18 @@ jobs:
       run: npm ci
       working-directory: .
 
+    - name: Create Changeset
+      run: | 
+        npx changeset add --empty
+        echo --- > .changeset/empty.md
+        echo '"appversioning": patch' >> .changeset/empty.md
+        # echo "\"appversioning\": patch" >> .changeset/empty.md
+        echo --- >> .changeset/empty.md
+        echo "`n" >> .changeset/empty.md
+        # echo ""  >> .changeset/empty.md
+        echo Updating patch >> .changeset/empty.md
+      working-directory: .
+
     - name: Bump Version
       run: npm run update-version
       working-directory: .
@@ -42,7 +54,7 @@ jobs:
         # git add ./AppVersioning/CHANGELOG.md
         # git add ./AppVersioning/.changeset
         # git add ./AppVersioning/package.json
-        git commit -m "Update changelog"
+        git diff --quiet || git commit -m "Update changelog"
         git push origin develop
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -69,5 +81,4 @@ jobs:
       run: |
         git fetch origin master
         git checkout -b master origin/master
-        git merge develop
-        git push origin master
+        git merge develop && git push origin master
