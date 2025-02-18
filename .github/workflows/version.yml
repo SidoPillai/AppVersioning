@@ -34,7 +34,7 @@ jobs:
         echo --- > .changeset/empty.md
         echo "appversioning": patch >> .changeset/empty.md
         echo --- >> .changeset/empty.md
-        echo(  >> .changeset/empty.md
+        echo ""  >> .changeset/empty.md
         echo Updating patch >> .changeset/empty.md
       working-directory: .
 
