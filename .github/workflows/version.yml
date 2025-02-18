@@ -28,6 +28,12 @@ jobs:
       run: npm ci
       working-directory: .
 
+    - name: Create Changeset
+      run: | 
+        echo "patch" | npx changeset add --empty
+        echo "Bump version patch" > .changeset/empty.md
+      working-directory: .
+
     - name: Bump Version
       run: npm run update-version
       working-directory: .
@@ -38,10 +44,9 @@ jobs:
       run: |
         git config user.name "GitHub Actions Bot"
         git config user.email "<>"
-        git add -A
-        # git add ./AppVersioning/CHANGELOG.md
-        # git add ./AppVersioning/.changeset
-        # git add ./AppVersioning/package.json
+        git add ./AppVersioning/CHANGELOG.md
+        git add ./AppVersioning/.changeset
+        git add ./AppVersioning/package.json
         git commit -m "Update changelog"
         git push origin develop
       env:
